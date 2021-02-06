@@ -1,9 +1,10 @@
 package main
 
 import (
+	"flag"
 	"fmt"
+	"log"
 	"os"
-	"strings"
 )
 
 func main() {
@@ -15,14 +16,13 @@ func main() {
 	cmd := os.Args[1]
 	switch cmd {
 	case "greet":
-		msg := "CLI BASICS"
-		if len(os.Args) > 2 {
-			f := strings.Split(os.Args[2], "=")
-			if len(f) == 2 && f[0] == "--msg" {
-				msg = f[1]
-			}
+		greetCmd := flag.NewFlagSet("greet", flag.ExitOnError)
+		msgFlag := greetCmd.String("msg", "CLI BASICS", "Help message for greet command")
+		err := greetCmd.Parse(os.Args[2:])
+		if err != nil {
+			log.Fatal(err.Error())
 		}
-		fmt.Printf("greeting from cli: %s\n", msg)
+		fmt.Printf("greeting from cli: %s\n", *msgFlag)
 	case "help":
 		fmt.Printf("some help message\n")
 	default:

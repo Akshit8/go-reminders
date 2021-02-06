@@ -21,4 +21,5 @@
 node_modules
 
 # generated binaries
-cli-basics/os-args/os-args
+os-args
+flagset
