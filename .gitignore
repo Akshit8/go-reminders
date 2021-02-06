@@ -22,4 +22,5 @@ node_modules
 
 # generated binaries
 os-args
-flagset
+flag-set
+flag-value
