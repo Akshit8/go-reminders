@@ -1,6 +1,13 @@
 {
   "name": "notifier",
   "version": "1.0.0",
+  "description": "notifier server for reminder cli package",
+  "main": "notifier.js",
+  "scripts": {},
+  "author": "Akshit Sadana",
+  "license": "MIT",
   "dependencies": {
+    "express": "^4.17.1",
+    "node-notifier": "^9.0.0"
   }
 }
