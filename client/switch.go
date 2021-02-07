@@ -35,6 +35,7 @@ type Switch struct {
 	commands      map[string]func() func(string) error
 }
 
+// NewSwitch creates new instance of Switch
 func NewSwitch(backendAPIURI string) *Switch {
 	httpClient := NewHTTPClient(backendAPIURI)
 	s := &Switch{
@@ -59,6 +60,15 @@ func (s Switch) Switch() error {
 		return fmt.Errorf("invalid command '%s'", cmdName)
 	}
 	return cmd()(cmdName)
+}
+
+// Help prints a useful message about command usage
+func (s Switch) Help() {
+	var help string
+	for name := range s.commands {
+		help += name + "\t --help\n"
+	}
+	fmt.Printf("usage of %s:\n<command> [<args>]\n%s", os.Args[0], help)
 }
 
 func (s Switch) create() func(string) error {
