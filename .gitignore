@@ -24,3 +24,5 @@ node_modules
 os-args
 flag-set
 flag-value
+
+bin
